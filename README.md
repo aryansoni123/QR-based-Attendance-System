@@ -38,4 +38,4 @@ To run this system, you'll need the following Python packages:
 You can install all dependencies by running:
 
 ```bash
-pip install pillow opencv-python pandas pyzbar
+pip install opencv-python pandas pyzbar pillow qrcode tkinter
