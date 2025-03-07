@@ -176,7 +176,6 @@ def open_login_window():
     login_window = tk.Tk()
     login_window.title("Login Portal")
     login_window.geometry("350x500")
-    #login_window.configure(bg="#1e1e1e")
 
     heading_frame = tk.Frame(login_window)
     heading_frame.pack(side="top", fill="x", pady=(20, 10))
@@ -185,26 +184,11 @@ def open_login_window():
     frame.pack(expand=True)
 
     tk.Label(heading_frame, text="Attendance System", font=("Arial", 20, "bold")).pack(pady=(0,30))
-    #tk.Label(frame, text="Student ID:", fg="white", bg="#1e1e1e").pack()
     student_btn = tk.Button(frame, text="Student Login", font=("Arial", 16), command=student_login, width=20, bg="lightblue")
     student_btn.pack(pady=20)
-    
-    #entry_id = ttk.Entry(frame, font=("Arial", 12))
-    #entry_id.pack()
-
 
     teacher_btn = tk.Button(frame, text="Teacher Login", font=("Arial", 16), command=teacher_login, width=20, bg="lightgreen")
     teacher_btn.pack(pady=20)
-    
-    #tk.Label(frame, text="Password:", fg="white", bg="#1e1e1e").pack()
-    #entry_pass = ttk.Entry(frame, show="*", font=("Arial", 12))
-    #entry_pass.pack()
-
-    #error_label = tk.Label(frame, text="", fg="red", bg="#1e1e1e")
-    #error_label.pack()
-
-    #tk.Button(frame, text="Login", font=("Arial", 12, "bold"), bg="#2196F3", fg="white", padx=10, pady=5, command=login).pack(pady=10)
-    #tk.Button(frame, text="View Attendance Sheet", font=("Arial", 12, "bold"), bg="#f44336", fg="white", padx=10, pady=5, command=lambda: os.system(f'notepad {CSV_FILE}')).pack()
 
     login_window.mainloop()
 
@@ -273,12 +257,12 @@ def validate_login(user_type, user_id, password, window):
             messagebox.showinfo("Login Success", "Welcome, "f"{students[user_id][0]}")
             global student_name
             student_name = students[user_id][0]  # Get student name
-            #error_label.config(text="", fg="red")
+
             window.destroy()
             student_dashboard()
         else:
             messagebox.showinfo("Wrong Credentials","Invalid ID or Password")
-            #error_label.config(text="Invalid ID or Password", fg="red")
+
     elif user_type == "Teacher":
         for class_id, (stored_id, stored_pass) in TEACHER_CREDENTIALS.items():
             if user_id == stored_id and password == stored_pass:
@@ -310,8 +294,6 @@ def student_login():
     
     login_btn = tk.Button(student_window, text="Login", font=("Arial", 14), bg="green", fg="white", width=15, command=attempt_login)
     login_btn.pack(pady=20)
-    #view_attendance_btn = tk.Button(student_window, text="View Attendance", font=("Arial", 14), bg="blue", fg="white", width=15)
-    #view_attendance_btn.pack(side="bottom", pady=30, anchor="se", padx=20)
     student_window.mainloop()
 
 def teacher_login():
@@ -337,4 +319,5 @@ def teacher_login():
     teacher_window.mainloop()
 
 
-open_login_window()
+if __name__ == "__main__":
+    open_login_window()
